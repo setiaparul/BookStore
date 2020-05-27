@@ -74,7 +74,9 @@ Username of user "user"
 
 
 ->. Tried to make Api as Non Blocking IO Calls using CompletableFuture
+
 ->.Handled Case like no two users can buy book parallely if the capacity of book is 1.
+
 -> Used MySql as Database
 
 ->.Below are the steps to build your docker container:
