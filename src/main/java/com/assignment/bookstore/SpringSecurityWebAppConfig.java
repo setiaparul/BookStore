@@ -16,14 +16,16 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("user").password("{noop}password").roles("USER")
                 .and()
-                .withUser("admin").password("{noop}password").roles("USER", "ADMIN");
+                .withUser("admin").password("{noop}password").roles( "ADMIN");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().antMatchers("/books").hasRole("ADMIN").anyRequest().authenticated()
+                .authorizeRequests().antMatchers("/books/buy").access("hasRole('USER')")
+            .antMatchers("/books").access("hasRole('ADMIN')")
+            .anyRequest().authenticated()
                 .and()
                 .httpBasic();
     }
